@@ -89,8 +89,8 @@ function mortgageCalculator2 (P, I, N, creditScore){
     if(creditScore > 740){
         var I = I - 0.005;
      } else if (creditScore < 660){
-        var I = I + 0.005; 
-     } 
+         var I = I + 0.005
+     }
      return(
         Math.round(P * (((I/12) * Math.pow((1 + (I/12)), (N * 12))) / (Math.pow((1 + (I/12)), (N * 12)) - 1)) *100)/100
         )
@@ -104,9 +104,11 @@ function mortgageCalculator2 (P, I, N, creditScore){
     let rate = P * (monthlyInterestRate*n1)/denominator;
     return rate.toFixed(2);*/
  }
+
 console.log(mortgageCalculator2(200000, 0.05, 30, 799));
 
 
+   
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function should be the same as mortgageCalculator, except it should console.log the monthly payment for 10 different interest rates at 0.5% increments plus or minus 2% from the inputted interest rate. Complete these calculations using a for loop.
