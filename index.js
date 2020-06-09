@@ -89,11 +89,22 @@ function mortgageCalculator2 (P, I, N, creditScore){
     if(creditScore > 740){
         var I = I - 0.005;
      } else if (creditScore < 660){
-         var I = I + 0.005
-     }
-     return
+        var I = I + 0.005; 
+     } 
+     return(
+        Math.round(P * (((I/12) * Math.pow((1 + (I/12)), (N * 12))) / (Math.pow((1 + (I/12)), (N * 12)) - 1)) *100)/100
+        )
+   /* I=I/12
+    N = N*12;
+    let n1 = Math.pow((1+ monthlyInterestRate), N);
+    let n2 = n1 * monthlyInterestRate;
+    let numerator = n1*n2;
+    let denominator= n1 - 1;
+    let monthlyRate = numerator/denominator;
+    let rate = P * (monthlyInterestRate*n1)/denominator;
+    return rate.toFixed(2);*/
  }
-
+console.log(mortgageCalculator2(200000, 0.05, 30, 799));
 
 
 
