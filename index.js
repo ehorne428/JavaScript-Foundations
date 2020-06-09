@@ -43,7 +43,7 @@ let numerator = n1 * n2;
 let denominator = n1 -1;
 let monthlyRate= numerator/denominator;
 let mortgage = principal * (monthlyInterestRate*n1)/denominator
-console.log(mortgage.toFixed);
+console.log (mortgage.toFixed(2));
 
 
 
