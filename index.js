@@ -51,10 +51,11 @@ console.log (mortgage.toFixed(2));
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-function mortgageCalculator() {
+function mortgageCalculator1() {
     return (`${name}, your monthly rate is ${mortgage.toFixed(2)}`)
 }
-console.log(mortgageCalculator());
+console.log(mortgageCalculator1());
+
 
 // 🏡 Task 4: Arguments and Parameters
 /* Substitute the variables in your functions for parameters such that you can substitute `P`, `I`, and `N` when you call the function.
@@ -63,9 +64,19 @@ For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
+function mortgageCalculator(P,I,N){
+    I=I/12
+    N = N*12;
+    let n1 = Math.pow((1+ monthlyInterestRate), N);
+    let n2 = n1 * monthlyInterestRate;
+    let numerator = n1*n2;
+    let denominator= n1 - 1;
+    let monthlyRate = numerator/denominator;
+    let rate = P * (monthlyInterestRate*n1)/denominator;
+    return rate.toFixed(2);
+}
 
-
-
+console.log(mortgageCalculator(200000, 0.05, 30))
 
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. This parameter will be a number between 0 and 800 (a credit score).
@@ -74,6 +85,14 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
+function mortgageCalculator2 (P, I, N, creditScore){
+    if(creditScore > 740){
+        var I = I - 0.005;
+     } else if (creditScore < 660){
+         var I = I + 0.005
+     }
+     return
+ }
 
 
 
