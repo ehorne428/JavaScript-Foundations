@@ -4,9 +4,10 @@
 /* Create variables for principal, interest rate, and years. Assign them the values 200000, 0.05, and 30 respectively. Create another value called name and give it the value of your own name.
 */
 
-
-
-
+let principal = 200000;
+let int = 0.05;
+let years = 30;
+const name = "Emily";
 
 // 🏡 Task 1.5: Simple Math
 /* To create a monthly mortgage rate calculator, we need to know the number of years in months and the monthly interest rate. 
@@ -15,8 +16,8 @@
 (2) Create another variable called `periods` and give it the value of years*12.
 */
 
-
-
+let monthlyInterestRate = int/12;
+let periods = years*12;
 
 // 🏡 Task 2: Harder Math
 /* Create your calculator! Use the formula in the ReadMe (also below) to run calculations on your numbers. Save the final value into a variable called monthlyRate. 
@@ -36,8 +37,13 @@ Hint #2: you'll need to use the `math` object for parts of this calculation!
 When your math is correct, monthlyRate will equal 1073.64
 */
 
-
-
+let n1 = Math.pow(( 1 + monthlyInterestRate ), periods);
+let n2 = n1* monthlyInterestRate;
+let numerator = n1 * n2;
+let denominator = n1 -1;
+let monthlyRate= numerator/denominator;
+let mortgage = principal * (monthlyInterestRate*n1)/denominator
+console.log (mortgage.toFixed(2));
 
 // 🏡 Task 3: Function
 /* Create a function called `mortgageCalculator` that combines all of the steps from task 1 and 2 and returns a sentence "{Name}, your monthly rate is ${monthlyRate}"
@@ -45,8 +51,10 @@ When your math is correct, monthlyRate will equal 1073.64
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-
-
+function mortgageCalculator1() {
+    return (`${name}, your monthly rate is ${mortgage.toFixed(2)}`)
+}
+console.log(mortgageCalculator1());
 
 
 // 🏡 Task 4: Arguments and Parameters
@@ -56,9 +64,19 @@ For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
+function mortgageCalculator(P,I,N){
+    I=I/12
+    N = N*12;
+    let n1 = Math.pow((1+ monthlyInterestRate), N);
+    let n2 = n1 * monthlyInterestRate;
+    let numerator = n1*n2;
+    let denominator= n1 - 1;
+    let monthlyRate = numerator/denominator;
+    let rate = P * (monthlyInterestRate*n1)/denominator;
+    return rate.toFixed(2);
+}
 
-
-
+console.log(mortgageCalculator(200000, 0.05, 30))
 
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. This parameter will be a number between 0 and 800 (a credit score).
@@ -67,9 +85,30 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 Hint: To drop an interest rate by 5% you can take monthlyRate and multiply it by 0.95. Similarly, to increase an interest rate by 5% you'd do monthlyRate * 1.05. 
 */
+function mortgageCalculator2 (P, I, N, creditScore){
+    if(creditScore > 740){
+        var I = I - 0.005;
+     } else if (creditScore < 660){
+         var I = I + 0.005
+     }
+     return(
+        Math.round(P * (((I/12) * Math.pow((1 + (I/12)), (N * 12))) / (Math.pow((1 + (I/12)), (N * 12)) - 1)) *100)/100
+        )
+   /* I=I/12
+    N = N*12;
+    let n1 = Math.pow((1+ monthlyInterestRate), N);
+    let n2 = n1 * monthlyInterestRate;
+    let numerator = n1*n2;
+    let denominator= n1 - 1;
+    let monthlyRate = numerator/denominator;
+    let rate = P * (monthlyInterestRate*n1)/denominator;
+    return rate.toFixed(2);*/
+ }
+
+console.log(mortgageCalculator2(200000, 0.05, 30, 799));
 
 
-
+   
 
 // 🏡 Task 6: Loops
 /* Write a new function called variableInterestRate. This function should be the same as mortgageCalculator, except it should console.log the monthly payment for 10 different interest rates at 0.5% increments plus or minus 2% from the inputted interest rate. Complete these calculations using a for loop.
