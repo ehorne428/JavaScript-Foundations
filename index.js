@@ -125,21 +125,22 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.055, your monthly rate is $1136"
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
+function variableInterestRate(P, I, N){
+    for (let i=0; i < 10; i= i+.005){
+        i = i - 0.02;
+        I = I/12;
+        N = N*12;
+        let name = "Emily";
+        let n1 = Math.pow((1+ monthlyInterestRate), N);
+        let n2 = n1 * monthlyInterestRate;
+        let numerator = n1*n2;
+        let denominator= n1 - 1;
+        let monthlyRate = numerator/denominator;
+        let rate = P * (monthlyInterestRate*n1)/denominator; 
+        /*let rate = P * (monthlyInterestRate * (Math.pow((1+ monthlyInterestRate), N))/((Math.pow((1+ monthlyInterestRate), N)) - 1));*/
+        
+        console.log ( `${name}, your monthly rate is $ ${rate.toFixed(2)}`);
+    }
+       console.log (variableInterestRate(200000, 0.04, 30));
 
-
-
-
-// 🌟🌟🌟 STRETCH 🌟🌟🌟//
-
-/* Attempt any of the stretch goals below once you have finished the work above. Remember as always, these may require additional research beyond what you learned today */
-
-/*  🏡 Add  `Property Tax`, `Homeowner's insurance` and `HOA fees` as parameters in your function to calculate total monthly spending on housing */
-
-
-/* 🏡 Build a calculator function that accepts `monthly payment` and `interest rate` and returns the maximum loan that a person could afford */
-
-
-/* 🏡 Explore using `window.prompt()` to allow a user to input parameters in the browser */
-
-
-/* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
+}
